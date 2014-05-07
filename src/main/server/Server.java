@@ -123,6 +123,22 @@ public class Server implements Runnable {
 		return resultArr;
 	}
 
+	public String uploadFile(CommandWrapper command) throws IOException{
+		Value[] argument = command.getArgs();
+		MessagePack msgpack = new MessagePack();
+		byte raw[] = msgpack.write(argument);
+		ByteArrayInputStream in = new ByteArrayInputStream(raw);
+        Unpacker unpacker = msgpack.createUnpacker(in);
+		
+        String bucketname = new Converter(argument[0]).read(Templates.TString);
+        String filename = new Converter(argument[1]).read(Templates.TString);
+        String filepath = new Converter(argument[2]).read(Templates.TString);
+		
+		String reply = FileUploadToS3.UploadToS3(bucketname,filename, filepath);
+		
+		return reply;
+	}
+
 	public Operator getChainOfOperators() {
 		Operator add = new Add();
 		Operator subtract = new Subtract();
