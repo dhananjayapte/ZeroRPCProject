@@ -48,7 +48,7 @@ public class Client {
 		
         //send to server
 		Packer packer = msgpack.createPacker(out);
-        packer.write(new CommandWrapper(methodName, values, null));
+        packer.write(new CommandWrapper(methodName, values));
         this.socket.send(out.toByteArray(), 0);
 		
         //receive from server
@@ -83,7 +83,7 @@ public class Client {
 		Value mapVal = msgpack.read(raw);
 		Value values[] = new Value[1];
 		values[0] = mapVal;
-		packer.write(new CommandWrapper(methodName, values, null));
+		packer.write(new CommandWrapper(methodName, values));
         this.socket.send(out.toByteArray(), 0);
 		
 		//receive from server
@@ -119,7 +119,7 @@ public class Client {
 		Value tempArr = msgpack.read(raw);
 		Value values[] = new Value[1];
 		values[0] = tempArr;//tempArr;
-		packer.write(new CommandWrapper(methodName, values, null));
+		packer.write(new CommandWrapper(methodName, values));
         this.socket.send(out.toByteArray(), 0);
 		
 		//receive from server

@@ -1,4 +1,6 @@
-ZeroRPCProject
-==============
+Cmpe273-Project
+===============
 
-ZeroRPC Project Spring 2014
+CMPE 273 Group project on ZeroRPC(MessagePack and ZeroMQ)
+
+Read Me!!
