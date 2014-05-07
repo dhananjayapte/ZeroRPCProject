@@ -27,7 +27,7 @@ public class FileUploadToS3 {
     String keyName             = "image.jpeg";
     String filePath            = "C:\\Users\\Nitish\\Desktop\\IMG_2695.JPG";   
    
-    AmazonS3 s3Client = new AmazonS3Client(new BasicAWSCredentials("AKIAJI7QA4H6PWEMDCRQ", "fEO4ZNsKS1FJacdNhqgsYO/d86EnwLD5Lli9ABUk"));        
+    AmazonS3 s3Client = new AmazonS3Client(new BasicAWSCredentials("", ""));        
 
     // Create a list of UploadPartResponse objects. You get one of these
     // for each part upload.
