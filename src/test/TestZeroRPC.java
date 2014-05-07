@@ -23,7 +23,7 @@ public class TestZeroRPC {
 		for(int i=0; i<12; i++){
 			client.executeFunction("add", a, b);
 		}*/
-		client.executeFunction("uploadtos3");
+		client.executeFunction("uploadtos3","","","");//bucketname, filename,filepath
 	}
 
 }
