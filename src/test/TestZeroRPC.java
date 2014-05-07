@@ -18,11 +18,12 @@ public class TestZeroRPC {
 		Client client = new Client();
 		client.connect("tcp://localhost:4242");
 		//float a = (float) 4.3;
-		int a = 4;
+		/*int a = 4;
 		int b = 2;
 		for(int i=0; i<12; i++){
 			client.executeFunction("add", a, b);
-		}
+		}*/
+		client.executeFunction("uploadtos3");
 	}
 
 }

@@ -24,10 +24,10 @@ public class FileUploadToS3 {
 	 */
 	public static String UploadToS3() throws IOException{
 	String existingBucketName="s3-bucket-zerorpc"; 
-    String keyName             = "vmLog.log";
-    String filePath            = "C:\\Users\\Nitish\\Desktop\\vmLog.log";   
+    String keyName             = "image.jpeg";
+    String filePath            = "C:\\Users\\Nitish\\Desktop\\IMG_2695.JPG";   
    
-    AmazonS3 s3Client = new AmazonS3Client(new BasicAWSCredentials("qwasd", "asd/asd"));        
+    AmazonS3 s3Client = new AmazonS3Client(new BasicAWSCredentials("AKIAJI7QA4H6PWEMDCRQ", "fEO4ZNsKS1FJacdNhqgsYO/d86EnwLD5Lli9ABUk"));        
 
     // Create a list of UploadPartResponse objects. You get one of these
     // for each part upload.

@@ -64,8 +64,8 @@ public class Client {
         int result = unpacker.readInt();
         System.out.println("Result-->" + result);
         }
-        //socket.close();
-        //context.term();
+        socket.close();
+        context.term();
 	}
 	/**
 	 * This method will send a HashMap to the server and receive a updated HashMap from the server
