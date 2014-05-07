@@ -4,7 +4,24 @@
 	<groupId>ZeroRPC-Java</groupId>
 	<artifactId>ZeroRPC-Java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>CMPE 273 Project Team Illuminati</name>
 
+	<properties>
+		<dropwizard.version>0.6.2</dropwizard.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+		<repository>
+			<id>repo.codahale.com</id>
+			<url>http://repo.codahale.com/</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.zeromq</groupId>
@@ -36,6 +53,11 @@
 			<version>1.7.7</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.yammer.dropwizard</groupId>
+			<artifactId>dropwizard-core</artifactId>
+			<version>${dropwizard.version}</version>
+		</dependency>
 
 	</dependencies>
 

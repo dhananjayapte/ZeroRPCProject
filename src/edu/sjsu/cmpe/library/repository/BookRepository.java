@@ -1,9 +1,16 @@
-package main.library;
+package edu.sjsu.cmpe.library.repository;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
+import edu.sjsu.cmpe.library.domain.Author;
+import edu.sjsu.cmpe.library.domain.Book;
+import edu.sjsu.cmpe.library.domain.Review;
 
 public class BookRepository implements BookRepositoryInterface {
     /** In-memory map to store books. (Key, Value) -> (ISBN, Book) */
@@ -16,16 +23,11 @@ public class BookRepository implements BookRepositoryInterface {
     private int reviewId;
 
     public BookRepository(ConcurrentHashMap<Long, Book> bookMap) {
-    	if(bookMap!=null){
-    		//checkNotNull(bookMap, "bookMap must not be null for BookRepository");
-    		bookInMemoryMap = bookMap;
-    	}else{
-    		bookInMemoryMap = new ConcurrentHashMap<>();
-    	}
-		isbnKey = 0;
-		authorId = 0;
-		reviewId = 0;
-    	
+	checkNotNull(bookMap, "bookMap must not be null for BookRepository");
+	bookInMemoryMap = bookMap;
+	isbnKey = 0;
+	authorId = 0;
+	reviewId = 0;
     }
     
     public void setDate(ConcurrentHashMap<Long, Date> dateMap){
@@ -60,23 +62,22 @@ public class BookRepository implements BookRepositoryInterface {
      */
     @Override
     public Book saveBook(Book newBook) {
-    	if(newBook!=null){
-			// checkNotNull(newBook, "newBook instance must not be null");
-			// Generate new ISBN
-			Long isbn = generateISBNKey();
-			newBook.setIsbn(isbn);
-			// TODO: create and associate other fields such as author
-			List<Author> authorList = newBook.getAuthorList();
-			if (authorList != null && !authorList.isEmpty()) {
-				for (Author authObj : authorList) {
-					authObj.setId(generateAuthorId());
-				}
-				newBook.setAuthorList(authorList);
-			}
-
-			// Finally, save the new book into the map
-			bookInMemoryMap.putIfAbsent(isbn, newBook);
+	checkNotNull(newBook, "newBook instance must not be null");
+	// Generate new ISBN
+	Long isbn = generateISBNKey();
+	newBook.setIsbn(isbn);
+	// TODO: create and associate other fields such as author
+	List<Author> authorList = newBook.getAuthorList();
+	if(authorList!=null && !authorList.isEmpty()){
+		for(Author authObj : authorList){
+			authObj.setId(generateAuthorId());
 		}
+		newBook.setAuthorList(authorList);
+	}
+	
+	// Finally, save the new book into the map
+	bookInMemoryMap.putIfAbsent(isbn, newBook);
+
 	return newBook;
     }
 
@@ -85,9 +86,8 @@ public class BookRepository implements BookRepositoryInterface {
      */
     @Override
     public Book getBookByISBN(Long isbn) {
-	/*checkArgument(isbn > 0,
-		"ISBN was %s but expected greater than zero value", isbn);*/
-    	System.out.println("Recieved ISBN iss*****************"+isbn+"Map is==>"+bookInMemoryMap);
+	checkArgument(isbn > 0,
+		"ISBN was %s but expected greater than zero value", isbn);
 	return bookInMemoryMap.get(isbn);
     }
 
