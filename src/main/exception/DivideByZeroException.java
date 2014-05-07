@@ -12,6 +12,7 @@ public class DivideByZeroException extends Exception {
 	public DivideByZeroException(String message) {
 		// TODO Auto-generated constructor stub
 	super(message);
+	new Exception().printStackTrace();
 	}
 
 }

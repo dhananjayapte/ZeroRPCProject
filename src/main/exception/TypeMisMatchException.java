@@ -11,5 +11,6 @@ public class TypeMisMatchException extends Exception{
 
 	public TypeMisMatchException(String message){
 		super(message);
+		new Exception().printStackTrace();
 	}
 }

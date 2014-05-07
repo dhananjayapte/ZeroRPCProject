@@ -7,6 +7,8 @@ package main.server;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -159,7 +161,11 @@ public class Server implements Runnable {
 					packer.write(out, printNumArr(command));	
 				}else if("saveBook".equals(command.getMethodName())){
 					packer.write(out, saveBook(command));
-				}else{
+				}else if("uploadtos3".equals(command.getMethodName())){
+					System.out.println(command.getMethodName()+" method called...");
+					packer.write(out, FileUploadToS3.UploadToS3());	
+				}
+				else{
 					System.out.println(command.getMethodName()+"() method called...");
 					packer.write(out, performOperation(command));
 				}
@@ -167,8 +173,11 @@ public class Server implements Runnable {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error at server!!!");
+				final StringWriter sw = new StringWriter();
+			     final PrintWriter pw = new PrintWriter(sw, true);
+			     e.printStackTrace(pw);
 				try {
-					packer.write(out, e.getMessage());
+					packer.write(out, sw.getBuffer().toString());
 					this.socket.send(out.toByteArray());
 				} catch (IOException e1) {
 					e1.printStackTrace();
