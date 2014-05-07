@@ -22,10 +22,11 @@ public class FileUploadToS3 {
 	 @author: Nitish
 
 	 */
-	public static String UploadToS3() throws IOException{
-	String existingBucketName="s3-bucket-zerorpc"; 
-    String keyName             = "image.jpeg";
-    String filePath            = "C:\\Users\\Nitish\\Desktop\\IMG_2695.JPG";   
+public static String UploadToS3(String bucketname, String filename, String filepath) throws IOException{
+				
+	String existingBucketName=bucketname; 
+    String keyName             = filename;
+    String filePath            = filepath;   
    
     AmazonS3 s3Client = new AmazonS3Client(new BasicAWSCredentials("", ""));        
 
